@@ -1,0 +1,9 @@
+FROM ubuntu:18.04 AS build_daemon
+
+RUN apt-get -qq update >> /dev/null
+RUN apt-get install -qq -y wget git automake libtool unzip build-essential mesa-common-dev >> /dev/null
+
+ADD ./bootstrap.sh /root/bootstrap.sh
+
+RUN chmod +x /root/bootstrap.sh \
+	&& /root/bootstrap.sh
